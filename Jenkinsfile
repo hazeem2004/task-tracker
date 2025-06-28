@@ -1,5 +1,10 @@
 pipeline {
     agent any
+    
+    tools {
+        nodejs 'NodeJS18'
+    }
+
 
     environment {
         NODE_ENV = 'development'
