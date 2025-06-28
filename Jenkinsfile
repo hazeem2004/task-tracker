@@ -5,12 +5,7 @@ pipeline {
         NODE_ENV = 'development'
     }
 
-    stages {
-        stage('Checkout Code') {
-            steps {
-                git credentialsId: 'github-creds', url: 'https://github.com/hazeem2004/task-tracker.git'
-            }
-        }
+
 
         stage('Install Dependencies') {
             steps {
