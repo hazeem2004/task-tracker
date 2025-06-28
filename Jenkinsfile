@@ -17,13 +17,7 @@ pipeline {
             }
         }
 
-        stages {
-        stage('Install Dependencies') {
-            steps {
-                bat 'npm install'
-            }
-        }
-
+        
         stage('Run Tests') {
             steps {
                 sh 'npm test || true'  // Allows pipeline to continue even if tests fail
