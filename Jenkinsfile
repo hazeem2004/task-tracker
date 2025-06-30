@@ -1,31 +1,20 @@
 pipeline {
   agent any
   stages {
-    stage('Install & Test') {
+    stage('Clone Repo') {
+      steps {
+        git 'https://github.com/hazeem2004/task-tracker.git'
+      }
+    }
+    stage('Install') {
       steps {
         sh 'npm install'
+      }
+    }
+    stage('Test') {
+      steps {
         sh 'npm test'
       }
-    }
-    stage('Lint Check') {
-      steps {
-        sh 'npx eslint .'
-      }
-    }
-    stage('Archive') {
-      when {
-        branch 'main'
-      }
-      steps {
-        archiveArtifacts artifacts: '**/build/**'
-      }
-    }
-  }
-  post {
-    failure {
-      mail to: 'hazeemahmed2004@gmail.com',
-           subject: "Build Failed",
-           body: "The Jenkins build failed. Check logs."
     }
   }
 }
